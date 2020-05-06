@@ -54,5 +54,7 @@ check to [	Push Only If Build Succeeds] and [	Force Push]
 >Branch to push [master]
 >Target remote name [origin]
 
-
-
+**************************************************
+prod url : http://34.69.116.97:1234/
+testing url : http://34.69.116.97:1235/
+git repo:- 
