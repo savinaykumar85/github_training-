@@ -1,0 +1,58 @@
+#Job1
+******************************************************** 
+ job1
+>SCM Git then enter the repo URL and  branch master
+>Build Triggers - Github Git SCMpolling
+>Build >Execute Shell > [sudo  cp . -r -v -f /var/lib/docker/volumes/prodwebdata/_data]
+>PostBuild trigger[ Job2]
+*********************************************************
+job2
+>Goto Build section and enter the bellow -
+#if sudo docker ps | grep prodos
+#then 
+#echo "Already running "
+#else 
+#sudo docker run -itd -v prodwebdata:/var/www/html/ --name prodos -p 1234:80  mywebimage
+#fi
+*********************************************************
+#job2
+*********************************************************
+job3
+>SCM Git then enter the repo URL and  branch savinay
+>Build Triggers - Github Git SCMpolling
+>Build >Execute Shell > [sudo  cp . -r -v -f /var/lib/docker/volumes/testwebdata/_data]
+>PostBuild trigger[ Job4]
+*********************************************************
+job4
+>Goto Build section and enter the bellow -
+#if sudo docker ps | grep prodos
+#then 
+#echo "Already running "
+#else 
+#sudo docker run -itd -v testwebdata:/var/www/html/ --name prodos -p 1234:80  mywebimage
+#fi
+ 
+ ******************************************************
+ #job3
+>SCM Git then enter the repo URL 
+>Add the git Account credentials
+>enter the branch */savinay
+>click on Additional Behaviours and select Merge before build and enter the bellow details-
+>Name of repository	[origin]
+>Branch to merge to [master]
+>Merge strategy [default]
+>Fast-forward mode [-ff]
+
+>Build Triggers select [Trigger builds remotely (e.g., from scripts)]
+
+>go to Built and select execute shell and enter the bellow
+#!/bin/bash
+#echo "build succesful"
+>go to Post-build Actions and select Git Publisher and change the entrys-
+check to [	Push Only If Build Succeeds] and [	Force Push]
+>under the branch section-
+>Branch to push [master]
+>Target remote name [origin]
+
+
+
