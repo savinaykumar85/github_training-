@@ -12,6 +12,6 @@
         name: httpd
         state: started
     - name: create index.php
-      COPY:
+      copy:
         content: "Hello world"
         dest: "/var/www/html/index.html"  
