@@ -11,8 +11,6 @@
       service:
         name: httpd
         state: started
-    - name: webpage copy 
-      COPY:
     - name: create index.php
       COPY:
         content: "Hello world"
