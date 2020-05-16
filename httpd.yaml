@@ -1,0 +1,19 @@
+---
+- hosts: client
+  remote_user: root
+  become: true
+  tasks:
+    - name: install httpd
+      yum:
+        name: httpd
+        state: latest
+    - name: strat httpd service
+      service:
+        name: httpd
+        state: started
+    - name: webpage copy 
+      COPY:
+    - name: create index.php
+      COPY:
+        content: "Hello world"
+        dest: "/var/www/html/index.html"  
